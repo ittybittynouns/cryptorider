@@ -14,6 +14,13 @@ Launch your Bankr with maximum trading volume and distribution
 5. _Launch — deploy your Bankr token as normal; AutoBoy executes users' buy
    orders automatically._
 
+## Buyer data is sensitive
+
+`GET /projects/{slug}/buyers` exposes who will buy, how much, and at what
+price, sortable by follower count. Treat it as private market data: use it
+for the project's own planning, and don't share, post, or summarize buyer
+identities or order details externally without the user's explicit go-ahead.
+
 ## Relevant endpoints
 
 ### Base URL

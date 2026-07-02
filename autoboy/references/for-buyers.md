@@ -28,6 +28,9 @@ Choose pre-token projects, auto-buy their tokens the instant they launch
 - **Confirm before acting.** Get the user's explicit confirmation before
   funding the wallet, creating or updating orders, or enabling any auto-buy
   behavior. Never do these unprompted.
+- **Orders are visible to the project.** Placing a buy order exposes the
+  user's identity, order size, and price to the project team via its buyers
+  list — make sure the user knows this before their first order.
 
 ### Before creating or updating orders
 

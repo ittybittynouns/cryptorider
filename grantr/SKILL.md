@@ -10,6 +10,7 @@ Use the hosted Grantr MCP server as the runtime integration surface.
 - MCP endpoint: `https://mcp.grantr.id/mcp`
 - Bankr account handoff: `https://grantr.id/agent/setup?source=bankr`
 - Codex account handoff: `https://grantr.id/agent/setup?source=codex`
+- Codex OAuth setup: `codex mcp add grantr --url https://mcp.grantr.id/mcp --oauth-client-id grantr-codex --oauth-resource https://mcp.grantr.id/mcp`, then `codex mcp login grantr --scopes grantr.mcp`
 - Public contract and deeper docs: `https://github.com/grantr-id/grantr-agent-kit`
 
 Grantr lets agents inspect live state and prepare actions while the account owner and wallet provider retain approval, signing, broadcast, policy, and revocation control.
@@ -51,7 +52,7 @@ https://grantr.id/agent/setup?source=codex
 
 Add only non-secret context when available, such as `intent=savings`, `intent=fileverse`, `ownerEoa`, `wallet`, or `bankrWallet`. Include `returnTo` only when the return target was supplied by Bankr or another trusted wallet provider. Never include auth tokens, API keys, signatures, session cookies, private keys, seed phrases, or raw MCP authorization material in a handoff URL.
 
-The browser handoff creates or signs into the Grantr account, asks for passkey approval, and issues a short-lived one-time connect code. Bankr may receive `grantrConnectCode` and `grantrMcpEndpoint` through an allowlisted `returnTo` redirect only after that approval, then exchange the code through its own MCP/session backend. Codex and clients without browser callbacks should use the command shown by the handoff page.
+The browser handoff creates or signs into the Grantr account, asks for passkey approval, and issues a short-lived one-time connect code. Bankr may receive `grantrConnectCode` and `grantrMcpEndpoint` through an allowlisted `returnTo` redirect only after that approval, then exchange the code through its own MCP/session backend. Codex should prefer OAuth login; if OAuth is unavailable, Codex and clients without browser callbacks should use the command shown by the handoff page.
 
 ## Bankr Context
 

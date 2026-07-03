@@ -3,6 +3,8 @@
 Use the hosted Grantr MCP server as the only normal runtime integration surface.
 
 - Endpoint: `https://mcp.grantr.id/mcp`
+- MCP protected-resource metadata: `https://mcp.grantr.id/.well-known/oauth-protected-resource/mcp`
+- Grantr OAuth authorization metadata: `https://grantr.id/.well-known/oauth-authorization-server`
 - Bankr account handoff: `https://grantr.id/agent/setup?source=bankr`
 - Codex account handoff: `https://grantr.id/agent/setup?source=codex`
 - Do not call raw Grantr backend routes from an end-user agent workflow.
@@ -19,6 +21,13 @@ Non-discovery tools are every other Grantr MCP tool. They require MCP session ow
 If a non-discovery tool returns `grantr_account_setup_required`, stop and use the account handoff URL. Do not keep retrying private tools until the account is set up and the MCP session has been refreshed.
 
 The setup page completes login/account setup in the browser, asks for Grantr passkey approval, and creates a short-lived one-time connect code. Bankr may receive `grantrConnectCode` plus `grantrMcpEndpoint` through an allowlisted `returnTo` redirect. Codex and clients without browser callbacks should use the command shown by the handoff page.
+
+Codex should prefer OAuth setup when available:
+
+```sh
+codex mcp add grantr --url https://mcp.grantr.id/mcp --oauth-client-id grantr-codex --oauth-resource https://mcp.grantr.id/mcp
+codex mcp login grantr --scopes grantr.mcp
+```
 
 Never ask users to paste raw backend context, Bankr API keys, Fileverse keys, session cookies, signatures, private keys, or seed phrases into chat.
 
